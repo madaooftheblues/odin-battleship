@@ -1,5 +1,5 @@
 const path = require('path')
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: './src/index.js',
@@ -26,7 +26,10 @@ module.exports = {
                     loader: 'babel-loader',
                     options: {
                         presets: [
-                            ['@babel/preset-env', { targets: 'defaults' }],
+                            [
+                                '@babel/preset-env',
+                                { targets: { node: 'current' } },
+                            ],
                         ],
                     },
                 },
@@ -34,7 +37,7 @@ module.exports = {
         ],
     },
     plugins: [
-        new htmlWebpackPlugin({
+        new HtmlWebpackPlugin({
             template: './src/index.html',
             inject: 'head',
             scriptLoading: 'defer',
